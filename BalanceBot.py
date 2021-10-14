@@ -1,6 +1,7 @@
 from mpu6050 import mpu6050
 mpu = mpu6050(0x68)
-
+from adafruit_servokit import ServoKit
+kit = ServoKit(channels=16)
 try:
     while True:
         gyro_data = mpu.get_gyro_data()
@@ -9,6 +10,9 @@ try:
         print("Gyro Z : "+str(gyro_data['z']))
         print()
         print("-------------------------------")
-
+        if gyro_data['y'] > 100:
+            kit.continuous_servo[0].throttle = 1
+        if gyro_data['y'] < -100:
+            kit.continuous_servo[0].throttle = -1
 except KeyboardInterrupt:
     print("Stopped")
