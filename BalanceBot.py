@@ -1,9 +1,7 @@
 import adafruit_mpu6050
 import time
-import board
 import adafruit_mpu6050
-i2c = board.I2C()  # uses board.SCL and board.SDA
-mpu = adafruit_mpu6050.MPU6050(i2c)
+mpu = adafruit_mpu6050.MPU6050(0x68)
 from adafruit_servokit import ServoKit
 kit = ServoKit(channels=16)
 try:
