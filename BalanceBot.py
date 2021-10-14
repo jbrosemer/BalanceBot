@@ -1,20 +1,18 @@
 import adafruit_mpu6050
-
-mpu = adafruit_mpu6050(0x68)
+import time
+import board
+import adafruit_mpu6050
+i2c = board.I2C()  # uses board.SCL and board.SDA
+mpu = adafruit_mpu6050.MPU6050(i2c)
 from adafruit_servokit import ServoKit
 kit = ServoKit(channels=16)
 try:
     while True:
-        gyro_data = mpu.get_gyro_data()
-        print("Gyro X : "+str(gyro_data['x']))
-        print("Gyro Y : "+str(gyro_data['y']))
-        print("Gyro Z : "+str(gyro_data['z']))
-        print()
-        print("-------------------------------")
-        if gyro_data['y'] > 100:
-            kit.continuous_servo[0].throttle = 1
-        if gyro_data['y'] < -100:
-            kit.continuous_servo[0].throttle = -1
+        print("Gyro X:%.2f, Y: %.2f, Z: %.2f degrees/s" % (mpu.gyro))
+        # if gyro_data['y'] > 100:
+        #    kit.continuous_servo[0].throttle = 1
+        # if gyro_data['y'] < -100:
+        #    kit.continuous_servo[0].throttle = -1
 
 except KeyboardInterrupt:
     print("Stopped")
