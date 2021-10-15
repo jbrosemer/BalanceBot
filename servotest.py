@@ -3,9 +3,7 @@ import time
 kit = ServoKit(channels=16)
 try:
     while True:
-        kit.servo[15].angle = 180
-        time.sleep(2)
-        kit.servo[15].angle = 0
+        kit.servo[15].angle = 90
 except KeyboardInterrupt:
     print("end")
-    
+
