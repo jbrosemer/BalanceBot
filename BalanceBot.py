@@ -113,13 +113,10 @@ class mpu6050:
 mpu = mpu6050(0x68)
 while (1):
     try:
-        accel_data = mpu.get_accel_data()
         gyro_data = mpu.get_gyro_data()
 
         print(
-            "Ax:{:.4f}\tAy:{:.4f}\tAz:{:.4f}\tGx:{:.4f}\tGy:{:.4f}\tGz:{:.4f} ".format(accel_data['x'], accel_data['y'],
-                                                                                       accel_data['z'], gyro_data['x'],
-                                                                                       gyro_data['y'], gyro_data['z']))
+            "Gx:{:.4f}\tGy:{:.4f}\tGz:{:.4f} ".format(gyro_data['x'],gyro_data['y'], gyro_data['z']))
 
     except KeyboardInterrupt:
         break
