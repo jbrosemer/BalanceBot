@@ -23,7 +23,7 @@ try:
         if imu.AccelVals[1] < -5:
             kit.servo[15].angle = 180
         if imu.AccelVals[1] > 5:
-            kit.servo[15].angle = 0
+            kit.servo[15].angle = -180
 except KeyboardInterrupt:
     print()
     print("ended")
